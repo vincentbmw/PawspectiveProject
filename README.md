@@ -224,9 +224,9 @@ private const val BASE_URL = "http://your-backend-url:5000/"
 ##  Docker Deployment
 
 ###  **Backend Deployment**
-`ash
+`
 cd backend
-
+`
 # Build Docker image
 docker build -t pawspective-backend .
 
@@ -239,7 +239,7 @@ docker run -d \
 `
 
 ###  **Production Deployment**
-`ash
+```
 # Using docker-compose (create docker-compose.yml)
 docker-compose up -d
-`
+```
