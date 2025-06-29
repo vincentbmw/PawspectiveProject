@@ -231,12 +231,13 @@ cd backend
 docker build -t pawspective-backend .
 
 # Run container
+```
 docker run -d \
   --name pawspective-api \
   -p 5000:5000 \
   --env-file .env \
   pawspective-backend
-`
+```
 
 ###  **Production Deployment**
 ```
