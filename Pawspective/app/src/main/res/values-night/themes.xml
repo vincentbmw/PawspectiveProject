@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Pawspective" parent="android:Theme.Material.NoActionBar">
+        <!-- Dark theme colors will be handled by Compose -->
+    </style>
+</resources> 
