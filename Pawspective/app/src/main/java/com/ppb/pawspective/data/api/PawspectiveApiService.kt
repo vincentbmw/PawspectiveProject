@@ -64,4 +64,10 @@ interface PawspectiveApiService {
         @Path("user_id") userId: String,
         @Body request: SendMessageRequest
     ): Response<SendMessageResponse>
+    
+    @POST("api/user/{user_id}/feedback")
+    suspend fun submitFeedback(
+        @Path("user_id") userId: String,
+        @Body request: com.ppb.pawspective.data.model.FeedbackRequest
+    ): Response<com.ppb.pawspective.data.model.FeedbackResponse>
 } 

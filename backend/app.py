@@ -129,7 +129,7 @@ def internal_error(error):
 
 # Add healthcheck endpoint
 @app.route('/health')
-def health_check():
+def health_status():
     return jsonify({"status": "healthy"}), 200
 
 if __name__ == '__main__':
