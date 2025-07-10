@@ -3,3 +3,5 @@ google-generativeai
 firebase-admin
 flask
 werkzeug
+email-validator
+flask-cors

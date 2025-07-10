@@ -64,8 +64,7 @@ class SettingsActivity : ComponentActivity() {
                         startActivity(Intent(this@SettingsActivity, ProfileActivity::class.java))
                     },
                     onFeedbackClick = {
-                        // TODO: Navigate to feedback screen
-                        Toast.makeText(this@SettingsActivity, "Feedback feature coming soon!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@SettingsActivity, FeedbackActivity::class.java))
                     },
                     onThemeToggle = { isDark ->
                         themeManager.updateDarkMode(isDark)

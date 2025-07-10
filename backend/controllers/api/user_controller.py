@@ -233,8 +233,10 @@ def create_profile(user_id):
 
 @user_api.route('/api/user/<user_id>/feedback', methods=['POST'])
 def save_feedback(user_id):
-    """Save user feedback"""
+    """Send user feedback to company email"""
     try:
+        from services.email_service import email_service
+        
         data = request.get_json()
         
         if not data or 'feedback' not in data:
@@ -245,18 +247,31 @@ def save_feedback(user_id):
         if not feedback.strip():
             return jsonify({'error': 'Feedback cannot be empty'}), 400
         
-        success = firebase_service.save_user_feedback(user_id, feedback)
+        # Validate feedback length
+        if len(feedback) > 2000:
+            return jsonify({'error': 'Feedback is too long. Maximum 2000 characters allowed.'}), 400
         
-        if success:
+        # Get user email for context
+        user_data = firebase_service.get_user_by_id(user_id)
+        user_email = user_data.get('email', 'Unknown') if user_data else 'Unknown'
+        
+        # Send feedback to company email
+        email_sent = email_service.send_feedback_email(user_id, user_email, feedback)
+        
+        if email_sent:
+            # Also save to database for backup/analytics
+            firebase_service.save_user_feedback(user_id, feedback)
+            
             return jsonify({
                 'success': True,
-                'message': 'Feedback saved successfully'
+                'message': 'Feedback sent successfully'
             }), 200
         else:
-            return jsonify({'error': 'Failed to save feedback'}), 500
+            return jsonify({'error': 'Failed to send feedback. Please try again later.'}), 500
             
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        print(f"Error in save_feedback: {str(e)}")
+        return jsonify({'error': 'An error occurred while processing your feedback'}), 500
 
 @user_api.route('/api/user/<user_id>/stats', methods=['GET'])
 def get_user_stats(user_id):
