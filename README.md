@@ -14,6 +14,8 @@
   <p>An intelligent mobile application that helps users discover the perfect dog breed based on their lifestyle, preferences, and living situation using Google Gemini AI.</p>
 </div>
 
+https://github.com/user-attachments/assets/41a11294-8041-42ce-981c-9edeaf7f123f
+
 ---
 
 ##  Table of Contents
