@@ -246,3 +246,7 @@ docker run -d \
 # Using docker-compose (create docker-compose.yml)
 docker-compose up -d
 ```
+
+## 📝 License
+
+This project is open source and available under the [Apache License 2.0](LICENSE).
